@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclone/core/theme.dart';
+// import 'package:netflixclone/core/theme.dart';
 import 'package:netflixclone/presentation/main_page/screen_main_page.dart';
 
 void main() {
@@ -12,12 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: ThemeData.light().copyWith(
+        primaryColor: Colors.blue,
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
+      ),
+      // darkTheme: AppTheme.darkTheme,
       home: ScreenMainPage(),
     );
   }

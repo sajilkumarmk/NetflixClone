@@ -1,11 +1,10 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:netflixclone/presentation/widgets/app_bar_widget.dart';
+import 'package:netflixclone/utilities/colors.dart';
 
 class ScreenDownloadsPage extends StatelessWidget {
-   ScreenDownloadsPage({Key? key}) : super(key: key);
+  ScreenDownloadsPage({Key? key}) : super(key: key);
 
   final _sections = [
     const _SmartDownloads(),
@@ -16,16 +15,16 @@ class ScreenDownloadsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: SafeArea(child: AppBarWidget(title: 'Downloads')),
-      ),
-      body: ListView.separated(
-        itemBuilder: (ctx,index) => _sections[index],
-        separatorBuilder: (ctx,index) =>
-          const SizedBox(height: 25,),
-        itemCount: _sections.length)
-    );
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: SafeArea(child: AppBarWidget(title: 'Downloads')),
+        ),
+        body: ListView.separated(
+            itemBuilder: (ctx, index) => _sections[index],
+            separatorBuilder: (ctx, index) => const SizedBox(
+                  height: 25,
+                ),
+            itemCount: _sections.length));
   }
 }
 
@@ -53,6 +52,12 @@ class _SmartDownloads extends StatelessWidget {
 
 class Section2 extends StatelessWidget {
   Section2({Key? key}) : super(key: key);
+
+  // final _posters = [
+  //   'https://www.themoviedb.org/t/p/w1280/bcCBq9N1EMo3daNIjWJ8kYvrQm6.jpg',
+  //   'https://www.themoviedb.org/t/p/w1280/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg',
+  //   'https://www.themoviedb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',
+  // ];
 
   final _posters = [
     'https://m.media-amazon.com/images/I/81ai6zx6eXL._AC_SL1304_.jpg',
@@ -168,48 +173,48 @@ class Section3 extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50),
       child: Column(
         children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
-              child: SizedBox(
-                width: double.infinity,
-                child: MaterialButton(
-                  color: Colors.blueAccent[700],
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
-                  onPressed: () {},
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text(
-                      'Set up',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric( vertical: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+            child: SizedBox(
+              width: double.infinity,
               child: MaterialButton(
-                color: Colors.white,
+                color: appPrimaryColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0)),
                 onPressed: () {},
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
-                    'See What You Can Download',
+                    'Set up',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: MaterialButton(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              onPressed: () {},
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  'See What You Can Download',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
