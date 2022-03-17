@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclone/presentation/fast_laugh/widgets/vedio_action_avatar.dart';
-import 'package:netflixclone/presentation/fast_laugh/widgets/vedio_action_widget.dart';
+import 'vedio_action_avatar.dart';
+import 'vedio_action_widget.dart';
 
 class VedioListItemWidget extends StatelessWidget {
   const VedioListItemWidget({
@@ -47,7 +47,7 @@ class VedioListItemWidget extends StatelessWidget {
                     VedioActionWidget(
                         icon: Icons.emoji_emotions_outlined, title: 'LOL'),
                     VedioActionWidget(icon: Icons.add, title: 'My List'),
-                    VedioActionWidget(icon: Icons.share, title: 'Share'),
+                    VedioActionWidget(icon: Icons.send, title: 'Share'),
                     VedioActionWidget(icon: Icons.play_arrow, title: 'Play'),
                   ],
                 ),

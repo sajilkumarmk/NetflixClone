@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:netflixclone/utilities/colors.dart';
+import 'colors.dart';
 
 class AppTheme {
   static final darkTheme = ThemeData(

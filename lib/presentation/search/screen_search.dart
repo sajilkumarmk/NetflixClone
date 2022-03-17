@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:netflixclone/presentation/search/widgets/search_idle_widget.dart';
-import 'package:netflixclone/presentation/search/widgets/search_result_widget.dart';
+import 'widgets/search_result_widget.dart';
 
 class ScreenSearchPage extends StatelessWidget {
   const ScreenSearchPage({Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class ScreenSearchPage extends StatelessWidget {
                 ),
                 style: const TextStyle(color: Colors.white),
               ),
-              SearchResulWidget(),
+              const SearchResulWidget(),
             ],
           ),
         ),

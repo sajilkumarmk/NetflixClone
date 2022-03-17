@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclone/presentation/fast_laugh/widgets/vedio_list_item_widget.dart';
+import 'widgets/vedio_list_item_widget.dart';
 
 class ScreenFastLaughPage extends StatelessWidget {
   ScreenFastLaughPage({Key? key}) : super(key: key);

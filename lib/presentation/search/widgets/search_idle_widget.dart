@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:netflixclone/presentation/search/widgets/search_title_widget.dart';
+import '../../widgets/common_title.dart';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class SearchIdleWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SearchTitleWidget(title: 'Top Searches'),
+          const CommonTitleWidget(title: 'Top Searches'),
           Expanded(
             child: ListView.separated(
               itemBuilder: (ctx, index) {

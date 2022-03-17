@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflixclone/utilities/colors.dart';
+import '../../utilities/colors.dart';
 
-ValueNotifier<int> indexChangeNotifier = ValueNotifier(2);
+ValueNotifier<int> indexChangeNotifier = ValueNotifier(0);
 
 class BottomNavigationWidget extends StatelessWidget {
   const BottomNavigationWidget({Key? key}) : super(key: key);
@@ -17,8 +17,8 @@ class BottomNavigationWidget extends StatelessWidget {
             onTap: (index) {
               indexChangeNotifier.value = index;
             },
-            selectedItemColor: appUnselectedColor,
-            unselectedItemColor: appSelectedColor,
+            selectedItemColor: appSelectedColor,
+            unselectedItemColor: appUnselectedColor,
             backgroundColor: appDarkBackground,
             items: const [
               BottomNavigationBarItem(

@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:netflixclone/presentation/widgets/app_bar_widget.dart';
-import 'package:netflixclone/utilities/colors.dart';
+import '../utilities/colors.dart';
+import '../widgets/app_bar_widget.dart';
 
 class ScreenDownloadsPage extends StatelessWidget {
   ScreenDownloadsPage({Key? key}) : super(key: key);
@@ -81,7 +81,6 @@ class Section2 extends StatelessWidget {
           padding: EdgeInsets.only(top: 12, left: 30, right: 30),
           child: Text(
             """We will download a peronalised selection of\nmovies and shows for you, so there's\nalways something to watch on your\ndevice""",
-            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
               color: Colors.grey,
@@ -99,7 +98,7 @@ class Section2 extends StatelessWidget {
                 backgroundColor: Colors.grey[900],
               ),
               DownloadImageWidget(
-                posters: _posters[2],
+                posters: _posters[0],
                 margin: const EdgeInsets.only(
                   right: 180,
                 ),
@@ -113,7 +112,7 @@ class Section2 extends StatelessWidget {
                 angle: 15,
               ),
               DownloadImageWidget(
-                posters: _posters[0],
+                posters: _posters[2],
                 margin: const EdgeInsets.only(top: 30),
                 width: 0.33,
                 height: 0.52,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:netflixclone/core/theme.dart';
-import 'package:netflixclone/presentation/main_page/screen_main_page.dart';
+import 'presentation/screen_splash.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
       ),
       // darkTheme: AppTheme.darkTheme,
-      home: ScreenMainPage(),
+      home: const ScreenSplash(),
     );
   }
 }
