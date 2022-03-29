@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'icon_text_button_widget.dart';
 
 class BottomSectionTwoWidget extends StatelessWidget {
   const BottomSectionTwoWidget({
@@ -25,53 +26,21 @@ class BottomSectionTwoWidget extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Column(
-            children: const [
-              Icon(
-                Icons.send,
-              ),
-              Text(
-                'Share',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
+          const IconTextButtonWidget(
+            icon: Icons.send,
+            text: 'Share',
           ),
-          const SizedBox(
-            width: 20,
+          const SizedBox(width: 20),
+          const IconTextButtonWidget(
+            icon: Icons.add,
+            text: 'My List',
           ),
-          Column(
-            children: const [
-              Icon(Icons.add),
-              Text(
-                'My List',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
+          const SizedBox(width: 20),
+          const IconTextButtonWidget(
+            icon: Icons.play_arrow,
+            text: 'Play',
           ),
-          const SizedBox(
-            width: 20,
-          ),
-          Column(
-            children: const [
-              Icon(Icons.play_arrow),
-              Text(
-                'Play',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 20,
-          ),
+          const SizedBox(width: 20),
         ],
       ),
     );

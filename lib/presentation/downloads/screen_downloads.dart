@@ -1,5 +1,9 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixclone/application/downloads/downloads_bloc.dart';
+import '../../domine/core/constants.dart';
 import '../utilities/colors.dart';
 import '../widgets/app_bar_widget.dart';
 
@@ -67,6 +71,10 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getPosterCard());
+    });
     return Column(
       children: [
         const Text(
@@ -87,38 +95,49 @@ class Section2 extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.width - 60,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: MediaQuery.of(context).size.width * 0.33,
-                backgroundColor: Colors.grey[900],
-              ),
-              DownloadImageWidget(
-                posters: _posters[0],
-                margin: const EdgeInsets.only(
-                  right: 180,
-                ),
-                angle: -15,
-              ),
-              DownloadImageWidget(
-                posters: _posters[1],
-                margin: const EdgeInsets.only(
-                  left: 180,
-                ),
-                angle: 15,
-              ),
-              DownloadImageWidget(
-                posters: _posters[2],
-                margin: const EdgeInsets.only(top: 30),
-                width: 0.33,
-                height: 0.52,
-              )
-            ],
-          ),
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            // print(state.downloads.toString());
+            return SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width - 60,
+              child: state.isLoading
+                  ? const Center(child: CupertinoActivityIndicator())
+                  : Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: MediaQuery.of(context).size.width * 0.33,
+                          backgroundColor: Colors.grey[900],
+                        ),
+                        DownloadImageWidget(
+                          posters:
+                              '$imageAppendUrl${state.downloads[0].posterPath}',
+                          // posters: _posters[0],
+                          margin: const EdgeInsets.only(
+                            right: 180,
+                          ),
+                          angle: -15,
+                        ),
+                        DownloadImageWidget(
+                          posters:
+                              '$imageAppendUrl${state.downloads[1].posterPath}',
+                          margin: const EdgeInsets.only(
+                            left: 180,
+                          ),
+                          angle: 15,
+                        ),
+                        DownloadImageWidget(
+                          posters:
+                              '$imageAppendUrl${state.downloads[2].posterPath}',
+                          margin: const EdgeInsets.only(top: 30),
+                          width: 0.33,
+                          height: 0.52,
+                        )
+                      ],
+                    ),
+            );
+          },
         ),
       ],
     );
