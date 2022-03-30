@@ -8,7 +8,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-       Padding(
+      Padding(
         padding: const EdgeInsets.all(10.0),
         child: Text(
           title,
@@ -35,9 +35,8 @@ class AppBarWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(3),
             color: Colors.blue,
             image: const DecorationImage(
-              image: AssetImage('assets/images/anjana.jpg'),
-              fit: BoxFit.fill
-              ),
+                image: AssetImage('assets/images/anjana.jpg'),
+                fit: BoxFit.fill),
           ),
         ),
       ),

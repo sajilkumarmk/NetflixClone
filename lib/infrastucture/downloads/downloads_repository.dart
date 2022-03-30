@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domine/core/api_end_points.dart';
+import '../core/api_end_points.dart';
 import '../../domine/downloads/i_downloads_facade.dart';
 import '../../domine/downloads/models/downloads.dart';
 import '../../domine/failures/main_failures.dart';

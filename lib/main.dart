@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclone/application/downloads/downloads_bloc.dart';
+import 'application/downloads/downloads_bloc.dart';
 
+import 'application/search/search_bloc.dart';
 import 'domine/core/di/injectable.dart';
 import 'presentation/screen_splash.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => getIt<DownloadsBloc>()),
+        BlocProvider(create: (ctx) => getIt<SearchBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'widgets/search_result_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../application/search/search_bloc.dart';
+import 'widgets/search_idle_widget.dart';
 
 class ScreenSearchPage extends StatelessWidget {
   const ScreenSearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      BlocProvider.of<SearchBloc>(context).add(const SearchEvent.idle());
+    });
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -27,7 +33,8 @@ class ScreenSearchPage extends StatelessWidget {
                 ),
                 style: const TextStyle(color: Colors.white),
               ),
-              const SearchResulWidget(),
+              // const SearchResulWidget(),
+              const SearchIdleWidget(),
             ],
           ),
         ),

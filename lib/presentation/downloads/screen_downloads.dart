@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflixclone/application/downloads/downloads_bloc.dart';
+import '../../application/downloads/downloads_bloc.dart';
 import '../../domine/core/constants.dart';
 import '../utilities/colors.dart';
 import '../widgets/app_bar_widget.dart';
@@ -12,7 +12,7 @@ class ScreenDownloadsPage extends StatelessWidget {
 
   final _sections = [
     const _SmartDownloads(),
-    Section2(),
+    const Section2(),
     const Section3(),
   ];
 
@@ -55,19 +55,7 @@ class _SmartDownloads extends StatelessWidget {
 }
 
 class Section2 extends StatelessWidget {
-  Section2({Key? key}) : super(key: key);
-
-  // final _posters = [
-  //   'https://www.themoviedb.org/t/p/w1280/bcCBq9N1EMo3daNIjWJ8kYvrQm6.jpg',
-  //   'https://www.themoviedb.org/t/p/w1280/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg',
-  //   'https://www.themoviedb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',
-  // ];
-
-  final _posters = [
-    'https://m.media-amazon.com/images/I/81ai6zx6eXL._AC_SL1304_.jpg',
-    'https://mir-s3-cdn-cf.behance.net/project_modules/fs/2baee529323171.55edda9493f77.jpg',
-    'https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg',
-  ];
+  const Section2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +101,6 @@ class Section2 extends StatelessWidget {
                         DownloadImageWidget(
                           posters:
                               '$imageAppendUrl${state.downloads[0].posterPath}',
-                          // posters: _posters[0],
                           margin: const EdgeInsets.only(
                             right: 180,
                           ),

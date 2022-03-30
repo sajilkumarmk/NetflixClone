@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,6 +17,12 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadsState> {
 
   DownloadsBloc(this._downloadFacade) : super(DownloadsState.initial()) {
     on<_GetPosterCard>((event, emit) async {
+      if (state.downloads.isNotEmpty) {
+        emit(state.copyWith(
+          isLoading: false,
+        ));
+        return;
+      }
       // For showing loading indication
       emit(
         state.copyWith(isLoading: true),

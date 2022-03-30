@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../domine/core/constants.dart';
+import '../../../application/search/search_bloc.dart';
 import '../../widgets/common_title.dart';
 
 class SearchIdleWidget extends StatelessWidget {
@@ -12,16 +15,26 @@ class SearchIdleWidget extends StatelessWidget {
         children: [
           const CommonTitleWidget(title: 'Top Searches'),
           Expanded(
-            child: ListView.separated(
-              itemBuilder: (ctx, index) {
-                return const TopSearchItemWidget();
+            child: BlocBuilder<SearchBloc, SearchState>(
+              builder: (context, state) {
+                return state.isLoading
+                    ? const Center(child: CupertinoActivityIndicator())
+                    : ListView.separated(
+                        itemBuilder: (ctx, index) {
+                          final movie = state.idleData[index];
+                          return TopSearchItemWidget(
+                            poster: "$imageAppendUrl${movie.backdropPath}",
+                            title: movie.title ?? 'NO Name',
+                          );
+                        },
+                        separatorBuilder: (ctx, index) {
+                          return const SizedBox(
+                            height: 15,
+                          );
+                        },
+                        itemCount: state.idleData.length,
+                      );
               },
-              separatorBuilder: (ctx, index) {
-                return const SizedBox(
-                  height: 15,
-                );
-              },
-              itemCount: 10,
             ),
           ),
         ],
@@ -31,10 +44,14 @@ class SearchIdleWidget extends StatelessWidget {
 }
 
 class TopSearchItemWidget extends StatelessWidget {
-  const TopSearchItemWidget({Key? key}) : super(key: key);
+  final String poster;
+  final String title;
+  const TopSearchItemWidget(
+      {Key? key, required this.poster, required this.title})
+      : super(key: key);
   // final _poster =
   //     'https://www.themoviedb.org/t/p/original/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg';
-  final _poster = 'https://images.spot.im/v1/production/wb3jrch8oi8ywi2kl5ea';
+  // final _poster = 'https://images.spot.im/v1/production/wb3jrch8oi8ywi2kl5ea';
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +63,14 @@ class TopSearchItemWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               image: DecorationImage(
-                  image: NetworkImage(_poster), fit: BoxFit.fill),
+                  image: NetworkImage(poster), fit: BoxFit.fill),
             )),
-        const Expanded(
+        Expanded(
             child: Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: Text(
-            'Movie Name',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            title,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
         )),
         const Padding(
