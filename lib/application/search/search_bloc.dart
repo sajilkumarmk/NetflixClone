@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import '../../domine/core/failures/main_failures.dart';
 import '../../domine/downloads/i_downloads_facade.dart';
-import '../../domine/failures/main_failures.dart';
 import '../../domine/search/i_search_facade.dart';
 
 import '../../domine/downloads/models/downloads.dart';
@@ -62,9 +62,27 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     /*
     Search State
     */
-    on<_Search>((event, emit) {
+    on<_Search>((event, emit) async {
       // get SearchData
-      _iSearchFacade.searchMovie(movieQuery: event.movieQuery);
+      emit(state.copyWith(
+        isLoading: true,
+      ));
+      final _result =
+          await _iSearchFacade.searchMovie(movieQuery: event.movieQuery);
+      // print(_result.toString());
+      emit(_result.fold((MainFailures failures) {
+        return state.copyWith(
+          searchData: [],
+          isLoading: false,
+          isError: true,
+        );
+      }, (Searchdata success) {
+        return state.copyWith(
+          searchData: success.results,
+          isError: false,
+          isLoading: false,
+        );
+      }));
       // show to UI
     });
   }

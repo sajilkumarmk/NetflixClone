@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../widgets/network_faild_widget.dart';
 import '../../../domine/core/constants.dart';
 import '../../../application/search/search_bloc.dart';
 import '../../widgets/common_title.dart';
@@ -17,23 +18,27 @@ class SearchIdleWidget extends StatelessWidget {
           Expanded(
             child: BlocBuilder<SearchBloc, SearchState>(
               builder: (context, state) {
-                return state.isLoading
-                    ? const Center(child: CupertinoActivityIndicator())
-                    : ListView.separated(
-                        itemBuilder: (ctx, index) {
-                          final movie = state.idleData[index];
-                          return TopSearchItemWidget(
-                            poster: "$imageAppendUrl${movie.backdropPath}",
-                            title: movie.title ?? 'NO Name',
-                          );
-                        },
-                        separatorBuilder: (ctx, index) {
-                          return const SizedBox(
-                            height: 15,
-                          );
-                        },
-                        itemCount: state.idleData.length,
+                if (state.isLoading == true) {
+                  return const Center(child: CupertinoActivityIndicator());
+                } else if (state.isError == true) {
+                  return const Center(child: NetworkFaildWidget());
+                } else {
+                  return ListView.separated(
+                    itemBuilder: (ctx, index) {
+                      final movie = state.idleData[index];
+                      return TopSearchItemWidget(
+                        poster: "$imageAppendUrl${movie.backdropPath}",
+                        title: movie.title ?? 'No Name',
                       );
+                    },
+                    separatorBuilder: (ctx, index) {
+                      return const SizedBox(
+                        height: 15,
+                      );
+                    },
+                    itemCount: state.idleData.length,
+                  );
+                }
               },
             ),
           ),

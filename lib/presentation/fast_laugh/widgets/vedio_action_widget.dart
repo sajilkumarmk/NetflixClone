@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class VedioActionWidget extends StatelessWidget {
   final IconData icon;
   final String title;
-  const VedioActionWidget({Key? key, required this.icon, required this.title})
+  final Color color;
+  const VedioActionWidget(
+      {Key? key,
+      required this.icon,
+      required this.title,
+      this.color = Colors.white})
       : super(key: key);
 
   @override
@@ -15,6 +20,7 @@ class VedioActionWidget extends StatelessWidget {
           Icon(
             icon,
             size: 25,
+            color: color,
           ),
           Text(
             title,

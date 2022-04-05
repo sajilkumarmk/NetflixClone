@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../core/api_end_points.dart';
+import '../../domine/core/failures/main_failures.dart';
 import '../../domine/downloads/i_downloads_facade.dart';
 import '../../domine/downloads/models/downloads.dart';
-import '../../domine/failures/main_failures.dart';
+import '../core/api_end_points.dart';
 
 @LazySingleton(as: DownloadFacade)
 class DownloadsRepository implements DownloadFacade {
@@ -24,7 +24,6 @@ class DownloadsRepository implements DownloadFacade {
         final downloadsList = (response.data['results'] as List).map((e) {
           return Downloads.fromJson(e);
         }).toList();
-        // log(downloadsList.toString());
         return Right(downloadsList);
       } else {
         return const Left(MainFailures.serverFailure());

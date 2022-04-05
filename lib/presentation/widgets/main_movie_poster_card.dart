@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MainMoviePosterCard extends StatelessWidget {
+  final String poster;
   const MainMoviePosterCard({
     Key? key,
-    required String poster,
-  })  : _poster = poster,
-        super(key: key);
-
-  final String _poster;
+    required this.poster,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +13,21 @@ class MainMoviePosterCard extends StatelessWidget {
       width: 140,
       height: 200,
       decoration: BoxDecoration(
-          color: Colors.grey[900],
-          borderRadius: BorderRadius.circular(8),
-          image: DecorationImage(
-              image: NetworkImage(
-                _poster,
-              ),
-              fit: BoxFit.fill)),
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.network(
+          poster,
+          fit: BoxFit.cover,
+          errorBuilder: (ctx, obj, st) {
+            return Image.asset(
+              "assets/images/error.png",
+            );
+          },
+        ),
+      ),
     );
   }
 }

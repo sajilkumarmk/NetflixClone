@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:netflixclone/core/theme.dart';
-import 'package:netflixclone/presentation/downloads/screen_downloads.dart';
-import 'package:netflixclone/presentation/fast_laugh/screen_fast_laugh.dart';
-import 'package:netflixclone/presentation/home/Screen_home.dart';
-import 'package:netflixclone/presentation/main_page/widgets/bottom_navigation.dart';
-import 'package:netflixclone/presentation/new_and_hot/screen_newandhot.dart';
-import 'package:netflixclone/presentation/search/screen_search.dart';
+
+import '../downloads/screen_downloads.dart';
+import '../fast_laugh/screen_fast_laugh.dart';
+import '../home/Screen_home.dart';
+import '../new_and_hot/screen_newandhot.dart';
+import '../search/screen_search.dart';
+import 'widgets/bottom_navigation.dart';
 
 class ScreenMainPage extends StatelessWidget {
   ScreenMainPage({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class ScreenMainPage extends StatelessWidget {
   final _pages = [
     const ScreenHomePage(),
     const ScreenNewAndHotPage(),
-    ScreenFastLaughPage(),
-    const ScreenSearchPage(),
+    const ScreenFastLaughPage(),
+    ScreenSearchPage(),
     ScreenDownloadsPage()
   ];
 

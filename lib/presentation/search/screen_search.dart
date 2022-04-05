@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domine/core/debounce/debounce.dart';
+import 'widgets/search_result_widget.dart';
 
 import '../../application/search/search_bloc.dart';
 import 'widgets/search_idle_widget.dart';
 
 class ScreenSearchPage extends StatelessWidget {
-  const ScreenSearchPage({Key? key}) : super(key: key);
+  ScreenSearchPage({Key? key}) : super(key: key);
+
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +30,30 @@ class ScreenSearchPage extends StatelessWidget {
                   CupertinoIcons.search,
                   color: Colors.grey,
                 ),
-                // prefixInsets: const EdgeInsetsDirectional.fromSTEB(200, 0, 0, 0),
-                suffixIcon: const Icon(
-                  CupertinoIcons.xmark_circle_fill,
-                  color: Colors.grey,
-                ),
                 style: const TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  if (value.isEmpty) {
+                    _debouncer.run(() {
+                      BlocProvider.of<SearchBloc>(context)
+                          .add(const SearchEvent.idle());
+                    });
+                  } else {
+                    _debouncer.run(() {
+                      BlocProvider.of<SearchBloc>(context)
+                          .add(SearchEvent.search(movieQuery: value));
+                    });
+                  }
+                },
               ),
-              // const SearchResulWidget(),
-              const SearchIdleWidget(),
+              BlocBuilder<SearchBloc, SearchState>(
+                builder: (context, state) {
+                  if (state.searchData.isEmpty) {
+                    return const SearchIdleWidget();
+                  } else {
+                    return const SearchResulWidget();
+                  }
+                },
+              ),
             ],
           ),
         ),

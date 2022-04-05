@@ -1,11 +1,14 @@
 import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../application/downloads/downloads_bloc.dart';
 import '../../domine/core/constants.dart';
 import '../utilities/colors.dart';
 import '../widgets/app_bar_widget.dart';
+import '../widgets/network_faild_widget.dart';
 
 class ScreenDownloadsPage extends StatelessWidget {
   ScreenDownloadsPage({Key? key}) : super(key: key);
@@ -85,45 +88,56 @@ class Section2 extends StatelessWidget {
         ),
         BlocBuilder<DownloadsBloc, DownloadsState>(
           builder: (context, state) {
-            // print(state.downloads.toString());
-            return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width - 60,
-              child: state.isLoading
-                  ? const Center(child: CupertinoActivityIndicator())
-                  : Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: MediaQuery.of(context).size.width * 0.33,
-                          backgroundColor: Colors.grey[900],
-                        ),
-                        DownloadImageWidget(
-                          posters:
-                              '$imageAppendUrl${state.downloads[0].posterPath}',
-                          margin: const EdgeInsets.only(
-                            right: 180,
-                          ),
-                          angle: -15,
-                        ),
-                        DownloadImageWidget(
-                          posters:
-                              '$imageAppendUrl${state.downloads[1].posterPath}',
-                          margin: const EdgeInsets.only(
-                            left: 180,
-                          ),
-                          angle: 15,
-                        ),
-                        DownloadImageWidget(
-                          posters:
-                              '$imageAppendUrl${state.downloads[2].posterPath}',
-                          margin: const EdgeInsets.only(top: 30),
-                          width: 0.33,
-                          height: 0.52,
-                        )
-                      ],
+            if (state.isLoading) {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width - 60,
+                child: const Center(child: CupertinoActivityIndicator()),
+              );
+            } else if (state.isError) {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width - 60,
+                child: const NetworkFaildWidget(),
+              );
+            } else {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width - 60,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: MediaQuery.of(context).size.width * 0.33,
+                      backgroundColor: Colors.grey[900],
                     ),
-            );
+                    DownloadImageWidget(
+                      posters:
+                          '$imageAppendUrl${state.downloads[0].posterPath}',
+                      margin: const EdgeInsets.only(
+                        right: 180,
+                      ),
+                      angle: -15,
+                    ),
+                    DownloadImageWidget(
+                      posters:
+                          '$imageAppendUrl${state.downloads[1].posterPath}',
+                      margin: const EdgeInsets.only(
+                        left: 180,
+                      ),
+                      angle: 15,
+                    ),
+                    DownloadImageWidget(
+                      posters:
+                          '$imageAppendUrl${state.downloads[2].posterPath}',
+                      margin: const EdgeInsets.only(top: 30),
+                      width: 0.33,
+                      height: 0.52,
+                    )
+                  ],
+                ),
+              );
+            }
           },
         ),
       ],

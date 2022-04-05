@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BottomSectionOneWidget extends StatelessWidget {
+  final String? originalTitle;
   const BottomSectionOneWidget({
     Key? key,
+    this.originalTitle,
   }) : super(key: key);
 
   @override
@@ -12,12 +14,20 @@ class BottomSectionOneWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Movie Name',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
+          SizedBox(
+            height: 20,
+            width: 200,
+            child: originalTitle == null
+                ? const Text(
+                    'No Name',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  )
+                : Text(
+                    originalTitle!,
+                    // overflow: TextOverflow.fade,
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
           ),
           const Spacer(),
           Column(

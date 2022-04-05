@@ -184,11 +184,13 @@ class _$DownloadsStateTearOff {
 
   _DownloadsState call(
       {required bool isLoading,
+      required bool isError,
       required List<Downloads> downloads,
       required Option<Either<MainFailures, List<Downloads>>>
           failureOrSuccessOption}) {
     return _DownloadsState(
       isLoading: isLoading,
+      isError: isError,
       downloads: downloads,
       failureOrSuccessOption: failureOrSuccessOption,
     );
@@ -201,6 +203,7 @@ const $DownloadsState = _$DownloadsStateTearOff();
 /// @nodoc
 mixin _$DownloadsState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isError => throw _privateConstructorUsedError;
   List<Downloads> get downloads => throw _privateConstructorUsedError;
   Option<Either<MainFailures, List<Downloads>>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
@@ -217,6 +220,7 @@ abstract class $DownloadsStateCopyWith<$Res> {
       _$DownloadsStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
+      bool isError,
       List<Downloads> downloads,
       Option<Either<MainFailures, List<Downloads>>> failureOrSuccessOption});
 }
@@ -233,6 +237,7 @@ class _$DownloadsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
+    Object? isError = freezed,
     Object? downloads = freezed,
     Object? failureOrSuccessOption = freezed,
   }) {
@@ -240,6 +245,10 @@ class _$DownloadsStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: isError == freezed
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
               as bool,
       downloads: downloads == freezed
           ? _value.downloads
@@ -262,6 +271,7 @@ abstract class _$DownloadsStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
+      bool isError,
       List<Downloads> downloads,
       Option<Either<MainFailures, List<Downloads>>> failureOrSuccessOption});
 }
@@ -280,6 +290,7 @@ class __$DownloadsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
+    Object? isError = freezed,
     Object? downloads = freezed,
     Object? failureOrSuccessOption = freezed,
   }) {
@@ -287,6 +298,10 @@ class __$DownloadsStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: isError == freezed
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
               as bool,
       downloads: downloads == freezed
           ? _value.downloads
@@ -305,11 +320,14 @@ class __$DownloadsStateCopyWithImpl<$Res>
 class _$_DownloadsState implements _DownloadsState {
   const _$_DownloadsState(
       {required this.isLoading,
+      required this.isError,
       required this.downloads,
       required this.failureOrSuccessOption});
 
   @override
   final bool isLoading;
+  @override
+  final bool isError;
   @override
   final List<Downloads> downloads;
   @override
@@ -317,7 +335,7 @@ class _$_DownloadsState implements _DownloadsState {
 
   @override
   String toString() {
-    return 'DownloadsState(isLoading: $isLoading, downloads: $downloads, failureOrSuccessOption: $failureOrSuccessOption)';
+    return 'DownloadsState(isLoading: $isLoading, isError: $isError, downloads: $downloads, failureOrSuccessOption: $failureOrSuccessOption)';
   }
 
   @override
@@ -326,6 +344,7 @@ class _$_DownloadsState implements _DownloadsState {
         (other.runtimeType == runtimeType &&
             other is _DownloadsState &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality().equals(other.isError, isError) &&
             const DeepCollectionEquality().equals(other.downloads, downloads) &&
             const DeepCollectionEquality()
                 .equals(other.failureOrSuccessOption, failureOrSuccessOption));
@@ -335,6 +354,7 @@ class _$_DownloadsState implements _DownloadsState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(isError),
       const DeepCollectionEquality().hash(downloads),
       const DeepCollectionEquality().hash(failureOrSuccessOption));
 
@@ -347,12 +367,15 @@ class _$_DownloadsState implements _DownloadsState {
 abstract class _DownloadsState implements DownloadsState {
   const factory _DownloadsState(
       {required bool isLoading,
+      required bool isError,
       required List<Downloads> downloads,
       required Option<Either<MainFailures, List<Downloads>>>
           failureOrSuccessOption}) = _$_DownloadsState;
 
   @override
   bool get isLoading;
+  @override
+  bool get isError;
   @override
   List<Downloads> get downloads;
   @override

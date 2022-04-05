@@ -17,13 +17,21 @@ class MovieVideoCardWidget extends StatelessWidget {
       children: [
         Container(
           width: screenWidth,
-          height: 150,
+          height: 175,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Colors.grey[900],
-            image: DecorationImage(
-              image: NetworkImage(_poster),
-              fit: BoxFit.fill,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              _poster,
+              fit: BoxFit.cover,
+              errorBuilder: (ctx, obj, st) {
+                return Image.asset(
+                  "assets/images/error.png",
+                );
+              },
             ),
           ),
         ),

@@ -17,9 +17,10 @@ class BottomSectionTwoWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 130,
-            height: 50,
+            width: 45,
+            height: 60,
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
               color: Colors.grey[900],
               image: DecorationImage(
                   image: NetworkImage(poster), fit: BoxFit.fill),

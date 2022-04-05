@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../utilities/movielist.dart';
 
 class MainMovieWidget extends StatelessWidget {

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import '../widgets/common_title.dart';
 import 'widgets/app_bar_widget.dart';
 import 'widgets/main_movie_widget.dart';
 import 'widgets/movie_poster_list_widget.dart';
 import 'widgets/section_3_widget.dart';
 import 'widgets/top10_movie_list_widget.dart';
-import '../widgets/common_title.dart';
 
 ValueNotifier<bool> scrollNotofier = ValueNotifier(true);
 

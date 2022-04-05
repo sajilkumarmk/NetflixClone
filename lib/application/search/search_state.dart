@@ -12,7 +12,7 @@ class SearchState with _$SearchState {
   factory SearchState.initial() => const SearchState(
         searchData: [],
         idleData: [],
-        isLoading: false,
+        isLoading: true,
         isError: false,
       );
 }
